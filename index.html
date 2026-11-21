@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number System Visualizer — Binary, Octal, Decimal, Hexadecimal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Number System Visualizer</h1>
+  <p class="subtitle">Binary &rarr; Decimal &bull; Octal &bull; Hexadecimal — step by step, the way it is taught in COAL.</p>
+</header>
+<main>
+  <section class="card">
+    <h2>1 &middot; Convert a Binary Number</h2>
+    <label for="binInput">Enter a binary number (only 0 and 1)</label>
+    <div class="input-row">
+      <input id="binInput" type="text" inputmode="numeric" autocomplete="off"
+             placeholder="e.g. 1011010111100101" value="1011010111100101">
+      <button id="sampleBtn" type="button">Try a sample</button>
+    </div>
+    <p id="binError" class="error" hidden>Only 0 and 1 are allowed in a binary number.</p>
+    <div class="results">
+      <div class="result-box">
+        <span class="result-label">Decimal</span>
+        <span id="decOut" class="result-value">—</span>
+      </div>
+      <div class="result-box">
+        <span class="result-label">Octal</span>
+        <span id="octOut" class="result-value">—</span>
+      </div>
+      <div class="result-box highlight">
+        <span class="result-label">Hexadecimal</span>
+        <span id="hexOut" class="result-value">—</span>
+      </div>
+    </div>
+  </section>
+  <section class="card">
+    <h2>2 &middot; Hexadecimal — groups of 4</h2>
+    <p class="hint">Pad with leading zeros so the length is a multiple of 4, then split from the right into groups of 4. Each group is one hex digit.</p>
+    <div id="hexGroups" class="groups"></div>
+    <table class="steps">
+      <thead><tr><th>Group</th><th>4&ndash;2&ndash;1 value</th><th>= Decimal</th><th>= Hex digit</th></tr></thead>
+      <tbody id="hexSteps"></tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>3 &middot; Octal — groups of 3</h2>
+    <p class="hint">Pad with leading zeros so the length is a multiple of 3, then split from the right into groups of 3. Each group is one octal digit (0&ndash;7, no letters).</p>
+    <div id="octGroups" class="groups"></div>
+    <table class="steps">
+      <thead><tr><th>Group</th><th>4&ndash;2&ndash;1 value</th><th>= Decimal</th><th>= Octal digit</th></tr></thead>
+      <tbody id="octSteps"></tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>4 &middot; Reverse — Decimal or Hex to Binary</h2>
+    <div class="reverse-grid">
+      <div>
+        <label for="decInput">Decimal &rarr; Binary</label>
+        <input id="decInput" type="text" inputmode="numeric" placeholder="e.g. 2026">
+        <p class="mini-result">Binary: <strong id="decToBin">—</strong></p>
+      </div>
+      <div>
+        <label for="hexInput">Hexadecimal &rarr; Binary</label>
+        <input id="hexInput" type="text" placeholder="e.g. B6F5">
+        <p class="mini-result">Binary: <strong id="hexToBin">—</strong></p>
+      </div>
+    </div>
+  </section>
+  <section class="card">
+    <h2>5 &middot; Practice — test yourself</h2>
+    <p class="hint">A random binary number appears. Convert it to hexadecimal and type your answer — no peeking at the converter above.</p>
+    <div class="quiz-box">
+      <p class="quiz-q">Convert <strong id="quizBin">10110110</strong> to hexadecimal:</p>
+      <div class="input-row">
+        <input id="quizAnswer" type="text" placeholder="Your hex answer">
+        <button id="quizCheck" type="button">Check</button>
+        <button id="quizNew" type="button">New number</button>
+      </div>
+      <p id="quizFeedback" class="quiz-feedback"></p>
+      <p class="score">Score: <strong id="quizScore">0 / 0</strong></p>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Quick reference</h2>
+    <table class="steps ref">
+      <thead><tr><th>Binary</th><th>Decimal</th><th>Hex</th><th>Binary</th><th>Decimal</th><th>Hex</th></tr></thead>
+      <tbody>
+        <tr><td>0000</td><td>0</td><td>0</td><td>1000</td><td>8</td><td>8</td></tr>
+        <tr><td>0001</td><td>1</td><td>1</td><td>1001</td><td>9</td><td>9</td></tr>
+        <tr><td>0010</td><td>2</td><td>2</td><td>1010</td><td>10</td><td>A</td></tr>
+        <tr><td>0011</td><td>3</td><td>3</td><td>1011</td><td>11</td><td>B</td></tr>
+        <tr><td>0100</td><td>4</td><td>4</td><td>1100</td><td>12</td><td>C</td></tr>
+        <tr><td>0101</td><td>5</td><td>5</td><td>1101</td><td>13</td><td>D</td></tr>
+        <tr><td>0110</td><td>6</td><td>6</td><td>1110</td><td>14</td><td>E</td></tr>
+        <tr><td>0111</td><td>7</td><td>7</td><td>1111</td><td>15</td><td>F</td></tr>
+      </tbody>
+    </table>
+    <p class="hint">Remember: hex letters start at 10 — 10 = A, 11 = B, 12 = C, 13 = D, 14 = E, 15 = F. Digits 0&ndash;9 stay the same. Octal has no letters at all, only 0&ndash;7.</p>
+  </section>
+</main>
+<footer>
+  <p>Built by Tasleem Bibi — BSCS, Computer Organization &amp; Assembly Language practice project. All numbers shown are sample data.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
